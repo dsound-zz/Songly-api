@@ -29,18 +29,16 @@ class DiscogsApi
     end
 
     
-    def search_master
-        binding.pry 
-        @master_ids.each do |m|
-            response = HTTParty.get("#{URI2}masters/#{m}")
-            print(response) 
-        end 
-    end 
+    # def search_master
+  
+       
+    #         response = HTTParty.get("#{URI2}masters/45574")
+    #         puts response 
+        
+    # end 
 
-    private 
+ 
 
-    def print(response) 
-        puts response 
-    end 
+   
 
 end 
