@@ -11,10 +11,10 @@ class MusicbrainzApi
     
     def initialize(response)
         @response = response 
-        @titles = response['recordings'].map { |k,v| k['title'] }
-        @names = response['recordings'].map { |k,v|  k['artist-credit'][0]['name'] }
-        @artists = response['recordings'].map { |k,v|  k['artist-credit'][0]['artist']['name'] }
-        @lengths = response['recordings'].map { |k,v| k['length'] }
+        @titles = response['recordings'].map { |k,v| k['title'] }.compact
+        @names = response['recordings'].map { |k,v|  k['artist-credit'][0]['name'] }.compact
+        @artists = response['recordings'].map { |k,v|  k['artist-credit'][0]['artist']['name'] }.compact
+        @lengths = response['recordings'].map { |k,v| k['length'] }.compact
     end
 
     def self.search_brainz(search)

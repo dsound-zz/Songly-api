@@ -7,8 +7,8 @@ class ItunesApi
     def initialize(response) 
         @response = JSON.parse(response) 
         @collection_names  = @response["results"].map { |k,v| k["collectionName"] }.compact
-        @artist_names = @response["results"].map { |k,v| k["artistName"] }
-        @track_names = @response["results"].map { |k,v| k["trackName"] }
+        @artist_names = @response["results"].map { |k,v| k["artistName"] }.compact
+        @track_names = @response["results"].map { |k,v| k["trackName"] }.compact
     end 
 
     def self.search_itunes(search)

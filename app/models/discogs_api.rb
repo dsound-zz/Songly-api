@@ -9,14 +9,14 @@ class DiscogsApi
     URI = "https://api.discogs.com/database/"
     URI2 = "https://api.discogs.com/"
 
-    attr_accessor :respnose, :titles, :master_ids, :thumbs 
+    attr_accessor :response, :titles, :master_ids, :thumbs 
   
 
     def initialize(response) 
         @response = response
-        @titles = response['results'].map { |k,v| k['title'] }
-        @master_ids = response['results'].map { |k,v| k['master_id'] }
-        @thumbs = response['results'].map { |k,v| k['thumb'] }
+        @titles = response['results'].map { |k,v| k['title'] }.compact
+        @master_ids = response['results'].map { |k,v| k['master_id'] }.compact
+        @thumbs = response['results'].map { |k,v| k['thumb'] }.compact
     end
 
     def self.search_discogs(search) 
