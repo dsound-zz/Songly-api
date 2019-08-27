@@ -1,14 +1,14 @@
 class ItunesApi
     include HTTParty
 
-    attr_accessor :response, :collection_names, :artist_names, :track_names 
+    attr_accessor :response, :collection_names, :artists, :tracks 
 
 
     def initialize(response) 
         @response = JSON.parse(response) 
-        @collection_names  = @response["results"].map { |k,v| k["collectionName"] }.compact
-        @artist_names = @response["results"].map { |k,v| k["artistName"] }.compact
-        @track_names = @response["results"].map { |k,v| k["trackName"] }.compact
+        @collections  = @response["results"].map { |k,v| k["collectionName"] }.compact
+        @artists = @response["results"].map { |k,v| k["artistName"] }.compact
+        @tracks = @response["results"].map { |k,v| k["trackName"] }.compact
     end 
 
     def self.search_itunes(search)
@@ -20,8 +20,16 @@ class ItunesApi
         end
     end 
 
+    def tracks_and_artists
+        t_and_a = {}
+        @tracks.each_with_index do |track, index|
+            t_and_a[track] = @artists[index]
+         end
+         t_and_a 
+    end
+
     def soundtracks
-        found_soundtracks = @collection_names.select { |cn| cn.include?("Soundtrack") }
+        found_soundtracks = @collections.select { |cn| cn.include?("Soundtrack") }
     end
 
    
