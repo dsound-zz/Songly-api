@@ -15,9 +15,11 @@ class MusicbrainzApi
         @names = response['recordings'].map { |k,v|  k['artist-credit'][0]['name'] }.compact
         @artists = response['recordings'].map { |k,v|  k['artist-credit'][0]['artist']['name'] }.compact
         @lengths = response['recordings'].map { |k,v| k['length'] }.compact
+        @id = response['recordings'].map { |k,v| k['id'] }.compact
     end
 
     def self.search_brainz(search)
+      binding.pry 
     response = get("#{URI}#{search}&fmt=json", @user_agent)
     if response 
         new(response) 
