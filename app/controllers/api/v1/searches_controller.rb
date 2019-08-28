@@ -6,5 +6,11 @@ class Api::V1::SearchesController < ApplicationController
         @mb_results = MusicbrainzApi.search_brainz(params[:q])
         @itunes_results = ItunesApi.search_itunes(params[:q]).tracks_and_artists
         render json: @mb_results
-     end 
+    end 
+
+    def selected
+        # MusicbrainzDetail.get_recordings(params[:recording_id])
+        DiscogsDetail.get_details(params[:title], params[:artist])
+        # ItunesDetail.new(@title, @artist)
+    end
 end

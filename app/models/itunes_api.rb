@@ -1,4 +1,4 @@
-class ItunesApi
+class ItunesApi 
     include HTTParty
 
     attr_accessor :response, :collection_names, :artists, :tracks 
@@ -25,7 +25,7 @@ class ItunesApi
         @tracks.each_with_index do |track, index|
             t_and_a[track] = @artists[index]
          end
-         t_and_a 
+        t_and_a 
     end
 
     def soundtracks

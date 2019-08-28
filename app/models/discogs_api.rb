@@ -1,15 +1,14 @@
 class DiscogsApi 
     include HTTParty 
 
+    DISCOGS_URI = "https://api.discogs.com/database/"
+    DISCOGS_URI2 = "https://api.discogs.com/"
 
-    @ck = Rails.application.credentials[:discogs_CK]
-    @cs = Rails.application.credentials[:discogs_CS]
-    @user_agent = {headers: {"User-agent" => "Songly/v1.0" }}
-
-    URI = "https://api.discogs.com/database/"
-    URI2 = "https://api.discogs.com/"
-
-    attr_accessor :response, :titles, :master_ids, :thumbs 
+  @ck = Rails.application.credentials[:discogs_CK]
+  @cs = Rails.application.credentials[:discogs_CS]
+  @discogs_user_agent = {headers: {"User-agent" => "Songly/v1.0" }}
+ 
+     attr_accessor :response, :titles, :master_ids, :thumbs 
   
 
     def initialize(response) 
@@ -20,7 +19,7 @@ class DiscogsApi
     end
 
     def self.search_discogs(search) 
-        response = get("#{URI}search?q=#{search}&type=master&key=#{@ck}&secret=#{@cs}")
+        response = get("#{DISCOGS_URI}search?q=#{search}&type=master&key=#{@ck}&secret=#{@cs}")
         if response 
             new(response) 
         else 
@@ -28,17 +27,6 @@ class DiscogsApi
         end 
     end
 
-    
-    # def search_master
-  
-       
-    #         response = HTTParty.get("#{URI2}masters/45574")
-    #         puts response 
-        
-    # end 
-
- 
-
-   
-
 end 
+
+
