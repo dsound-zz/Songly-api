@@ -11,11 +11,9 @@ class DiscogsDetail
     attr_accessor :title, :name 
 
     def initialize(response)
-        binding.pry 
     end
 
     def self.get_details(title, artist) 
-        binding.pry 
         response = get("#{DISCOGS_URI}search?release_title=#{title}&artist=#{artist}&type=master&key=#{@ck}&secret=#{@cs}")
         if response 
             new(response) 
