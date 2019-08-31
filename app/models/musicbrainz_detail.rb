@@ -9,8 +9,9 @@ class MusicbrainzDetail
   attr_accessor :release_id, :response
 
   def initialize(response) 
-    binding.pry 
     @response = response
+    @artist_credits = artist_credits(response) 
+    binding.pry  
   end
 
   def self.get_details(release_id)
@@ -21,5 +22,12 @@ class MusicbrainzDetail
       raise response.response 
     end
   end
+
+  private 
+
+  def artist_credits(response)
+    ac = [] 
+    nil_fixed = response["relations"].map { |r| r["artist"] }.compact
+  end 
 
 end
