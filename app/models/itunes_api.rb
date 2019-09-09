@@ -1,4 +1,4 @@
-class ItunesApi 
+class ItunesApi
     include HTTParty
 
     attr_accessor :response, :collection_names, :artists, :tracks 
@@ -11,7 +11,7 @@ class ItunesApi
         @tracks = @response["results"].map { |k,v| k["trackName"] }.compact
     end 
 
-    def self.search_itunes(search)
+    def self.itunes_details(search)
         response = get("https://itunes.apple.com/search?term=#{search}")
         if response 
             new(response) 

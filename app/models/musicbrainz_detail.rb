@@ -11,7 +11,7 @@ class MusicbrainzDetail
   def initialize(response) 
     @response = response
     @artist_credits = artist_credits(response) 
-    binding.pry  
+    
   end
 
   def self.get_details(release_id)
@@ -26,8 +26,7 @@ class MusicbrainzDetail
   private 
 
   def artist_credits(response)
-    ac = [] 
-    nil_fixed = response["relations"].map { |r| r["artist"] }.compact
+    response["relations"].map { |r| r["artist"] }.compact
   end 
 
 end

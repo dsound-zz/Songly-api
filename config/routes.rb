@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do   
       get 'search/:q', to: 'searches#search'
-      post 'selected', to: 'searches#selected'
+      get 'selected/:q', to: 'searches#selected'
     end
   end
 end
